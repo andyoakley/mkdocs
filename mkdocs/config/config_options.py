@@ -496,9 +496,22 @@ class Pages(OptionallyRequired):
     Validate the pages config. Automatically add all markdown files if empty.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, plugins, **kwargs):
         super(Pages, self).__init__(**kwargs)
-        self.file_match = utils.is_markdown_file
+
+        self.file_matchers = [utils.is_markdown_file]
+
+        for name, cls in plugins.get_plugins().items():
+            plugin = cls.load()
+            if "can_load" in dir(plugin):
+                if callable(plugin.can_load):
+                    p = plugin()
+                    self.file_matchers.append(p.can_load)
+
+        #self.file_match = utils.is_markdown_file
+
+    def file_match(self, path):
+        return any( map(lambda can_load: can_load(path), self.file_matchers) )
 
     def run_validation(self, value):
 
