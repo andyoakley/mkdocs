@@ -74,7 +74,8 @@ class SearchIndex(object):
         # Create an entry for the full page.
         self._add_entry(
             title=page.title,
-            text=self.strip_tags(page.content).rstrip('\n'),
+#            text=self.strip_tags(page.content).rstrip('\n'),
+            text='',
             loc=url
         )
 
@@ -193,9 +194,15 @@ class ContentParser(HTMLParser):
         self.data = []
         self.section = None
         self.is_header_tag = False
+        self.open_excluded = []
+        self.exclude = ['pre', 'table', 'style']
 
     def handle_starttag(self, tag, attrs):
         """Called at the start of every HTML tag."""
+
+        if tag in self.exclude:
+            if not tag in self.open_excluded:
+                self.open_excluded.append(tag)
 
         # We only care about the opening tag for headings.
         if tag not in (["h%d" % x for x in range(1, 7)]):
@@ -213,6 +220,9 @@ class ContentParser(HTMLParser):
 
     def handle_endtag(self, tag):
         """Called at the end of every HTML tag."""
+        
+        if tag in self.open_excluded:
+            self.open_excluded.remove(tag)
 
         # We only care about the opening tag for headings.
         if tag not in (["h%d" % x for x in range(1, 7)]):
@@ -238,4 +248,5 @@ class ContentParser(HTMLParser):
         if self.is_header_tag:
             self.section.title = data
         else:
-            self.section.text.append(data.rstrip('\n'))
+            if len(self.open_excluded)==0:
+                self.section.text.append(data.rstrip('\n'))
