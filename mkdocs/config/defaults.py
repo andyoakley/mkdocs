@@ -16,17 +16,12 @@ DEFAULT_SCHEMA = (
     # Reserved for internal use, stores the mkdocs.yml config file.
     ('config_file_path', config_options.Type(utils.string_types)),
 
-    # a list of plugins. Each item may contain a string name or a key value pair.
-    # A key value pair should be the string name (as the key) and a dict of config
-    # options (as the value).
-    ('plugins', config_options.Plugins(default=['search'])),
-
     # The title to use for the documentation
     ('site_name', config_options.Type(utils.string_types, required=True)),
 
     # Defines the structure of the navigation and which markdown files are
     # included in the build.
-    ('pages', config_options.Pages(config_options.plugins)),
+    ('pages', config_options.Pages()),
 
     # The full URL to where the documentation will be hosted
     ('site_url', config_options.URL()),
@@ -118,4 +113,8 @@ DEFAULT_SCHEMA = (
     # project version.
     ('extra', config_options.SubConfig()),
 
+    # a list of plugins. Each item may contain a string name or a key value pair.
+    # A key value pair should be the string name (as the key) and a dict of config
+    # options (as the value).
+    ('plugins', config_options.Plugins(default=['search'])),
 )
