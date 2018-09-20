@@ -50,8 +50,8 @@ use your package manager to install "Python" and "pip". Then you can use pip to
 [install MkDocs](#installing-mkdocs).
 
 [apt-get]: https://help.ubuntu.com/community/AptGet/Howto
-[homebrew]: http://brew.sh/
-[dnf]: http://dnf.readthedocs.io/en/latest/index.html
+[homebrew]: https://brew.sh/
+[dnf]: https://dnf.readthedocs.io/en/latest/index.html
 [yum]: http://yum.baseurl.org/
 [chocolatey]: https://chocolatey.org/
 
@@ -68,7 +68,7 @@ $ pip --version
 pip 1.5.2
 ```
 
-MkDocs supports Python versions 2.7, 3.3, 3.4, 3.5 and pypy.
+MkDocs supports Python versions 2.7, 3.4, 3.5, 3.6, 3.7 and pypy.
 
 #### Installing Python
 
@@ -224,7 +224,7 @@ setting:
 
 ```yaml
 site_name: MkLorum
-pages:
+nav:
     - Home: index.md
     - About: about.md
 ```
@@ -251,7 +251,7 @@ changing the theme. Edit the `mkdocs.yml` file and add a [`theme`][theme] settin
 
 ```yaml
 site_name: MkLorum
-pages:
+nav:
     - Home: index.md
     - About: about.md
 theme: readthedocs
@@ -348,13 +348,13 @@ the MkDocs IRC channel `#mkdocs` on freenode.
 [readthedocs]: user-guide/styling-your-docs/#readthedocs
 [MkDocs wiki]: https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes
 [build your own]: user-guide/custom-themes/
-[Amazon S3]: http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html
+[Amazon S3]: https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html
 [get-pip.py]: https://bootstrap.pypa.io/get-pip.py
 [pages]: user-guide/configuration/#pages
 [discussion group]: https://groups.google.com/forum/#!forum/mkdocs
 [GitHub issues]: https://github.com/mkdocs/mkdocs/issues
 [GitHub project pages]: https://help.github.com/articles/creating-project-pages-manually/
-[pip]: http://pip.readthedocs.io/en/stable/installing/
+[pip]: https://pip.readthedocs.io/en/stable/installing/
 [Python]: https://www.python.org/
 [site_name]: user-guide/configuration/#site_name
 [theme]: user-guide/configuration/#theme
